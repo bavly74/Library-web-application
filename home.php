@@ -10,6 +10,7 @@ require_once "connect.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -21,6 +22,7 @@ require_once "connect.php";
   
 <?php 
 $id=$_SESSION['userID'];
+if(isset($_SESSION['userID'])){
 $selectbookStmt="SELECT * FROM `book`";
 $selectusers="SELECT * FROM `user` where id =$id";
 $resultuserStmt=$connect->query($selectusers);
@@ -30,10 +32,10 @@ $resultuserStmt=$connect->query($selectusers);
         $search = $_POST['search'];
         $selectbookStmt.= " where title like '%$search%' ";
     }
-
+    $resultbookStmt=$connect->query($selectbookStmt);
 
 $rowuser=$resultuserStmt->fetch_assoc();
-$resultbookStmt=$connect->query($selectbookStmt);
+
 
 if($rowuser['admin']==1){
 
@@ -67,7 +69,7 @@ while($rowbook=$resultbookStmt->fetch_assoc()){
 </div>
 
    
-    <?php  }}?>
+    <?php  }}}else header("Location:http://localhost/Library/sign-in.php"); ?>
 
     </div>
     </div>

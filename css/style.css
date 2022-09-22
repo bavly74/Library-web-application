@@ -1,8 +1,12 @@
+
 body{
     width: 100%;
-    height: 100vh;
+    height: 100vh;    
+    background: #e0d7d77a;
+
 
 }
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 .bg-light {
     background-color: #007bff!important;
     border-bottom: 1px solid #ffffff40;
@@ -29,6 +33,8 @@ body{
 
 .card{
     margin-top: 4%;
+    box-shadow: 0px 0px 11px 0px;
+
 }
 .row.items{
     align-items: center;
@@ -67,7 +73,7 @@ position: relative;
     left: -30px;
     width:170px;
     background:rgb(236, 232, 232);
-    height:130px;
+    height:100px;
 
 
 }
@@ -130,3 +136,20 @@ margin-top:10px;
     
 }
 
+
+.btn-outline-success {
+    color: white;
+    border-color: white;
+}
+.card-title {
+    font-family: 'Creepster', cursive;
+    font-size: 27px;
+    color: #c35609;
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    background: #e9e8e8;
+}

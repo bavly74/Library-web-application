@@ -14,10 +14,11 @@ if($_POST){
     $imgPath=$_POST['imgPath'];
 
 
-    $insertStmt="INSERT INTO `book`(`title`, `author`, `edition`, `number`, `submission date`, `imgpath`) VALUES ('$title','$author','$edition','$number','$submissionDate','$imgPath') ";
+    $insertStmt="INSERT INTO `book`(`title`, `author`, `edition`, `number`, `submission date`, `imgpath`) VALUES ('$title','$author','$edition','$number','$submissionDate','$imgPath')";
 $insertResult=$connect->query($insertStmt);
+
 if($insertResult){
- $validation="book added";
+$validation="book added";
 }
 
 }

@@ -28,7 +28,7 @@ if($row['admin']==1){
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">LOGO</a>
+  <a class="navbar-brand" href="home.php">LOGO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -39,15 +39,14 @@ if($row['admin']==1){
         <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="about.php">About</a>
+        <a class="nav-link" href="addBook.php">Add Book</a>
       </li>
 
       <li class="nav-item menu">
                 <a class="nav-link" href="#"> <i class="fas fa-user"></i>my account</a>
                 <div class="sub">
                     <ul>
-                        <li><a href="editProfile.php"> update profile</a></li>
-                        <li class="hoverme"><a href="addBook.php"> add book</a> <i class="fas fa-angle-right"></i>
+                        <li><a href="editProfile.php?userID=<?php $row['id']; ?>"> update profile</a></li>
                             
                         </li>
                         <hr>
@@ -74,7 +73,7 @@ if($row['admin']==1){
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">LOGO</a>
+  <a class="navbar-brand" href="home.php">LOGO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -84,16 +83,13 @@ if($row['admin']==1){
       <li class="nav-item active">
         <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="about.php">About</a>
-      </li>
+     
 
       <li class="nav-item menu">
                 <a class="nav-link" href="#"> <i class="fas fa-user"></i>my account</a>
                 <div class="sub">
                     <ul>
-                        <li><a href="editProfile.php"> update profile</a></li>
-                        <li class="hoverme"><a href="cart.php"> cart</a> <i class="fas fa-angle-right"></i>
+                        <li><a href="editProfile.php?userID=<?php $row['id']; ?>"> update profile</a></li>
                             
                         </li>
                         <hr>
@@ -107,10 +103,11 @@ if($row['admin']==1){
       
     </ul>
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    
+    <form class="form-inline my-2 my-lg-0" method="post">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search for a book" aria-label="Search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form>  
   </div>
 </nav>
 
@@ -119,7 +116,7 @@ if($row['admin']==1){
 <?php } else{ ?>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="home.php">LOGO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -142,10 +139,11 @@ if($row['admin']==1){
       </li>
 
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    
+    <form class="form-inline my-2 my-lg-0" method="post">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search for a book" aria-label="Search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form>  
   </div>
 </nav>
 <?php } }?>

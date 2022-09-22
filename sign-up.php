@@ -1,6 +1,7 @@
 <?php 
 
 require_once"connect.php";
+session_start();
 if (!empty($_POST['username'])&&!empty($_POST['email'])&&!empty($_POST['password'])&&!empty($_POST['city'])){
 $passValidation="";
 $usernameValidation="";
@@ -10,13 +11,19 @@ $password=$_POST['password'];
 $confirmPass=$_POST['confirmPassword'];
 $city=$_POST['city'];
 $phone=$_POST['phone'];
+$admin=isset(($_POST['phone']))?0:1;
+
 if($password==$confirmPass){
 
     $selectQuery="SELECT * FROM `user` WHERE username='$username'";
     $selectResult=$connect->query($selectQuery);
     if($selectResult->num_rows==0){
-            $insertQuery="INSERT INTO `user`(`username`, `email`, `password`, `city` , `phone`,`admin`) VALUES ('$username','$email','$password','$city','$phone',0)";
+            $insertQuery="INSERT INTO `user`(`username`, `email`, `password`, `city` , `phone`,`admin`) VALUES ('$username','$email','$password','$city','$phone',$admin)";
             $insertResult=$connect->query($insertQuery);
+            
+            $select="select * from user where username = '$username' and email = '$email'";
+            $selectres=$connect->query($select);
+            $arr=$selectres->fetch_assoc();
             $_SESSION['userID']=$arr['id'];
             header('location:http://localhost/Library/home.php');
         }else{$usernameValidation="this username is used before" ;}
@@ -78,7 +85,13 @@ if($password==$confirmPass){
 
   </div>
  
+  <div class="form-group col-md-6">
+    <div class="form-check">
+      <label class="form-check-label" for="gridCheck">Admin ?</label>
+      <input name="admin" class="form-check-input" style="margin-left:20px;" type="checkbox" id="gridCheck">
 
+    </div>
+  </div>
 
   <button type="submit" class="btn btn-primary ">Sign up</button>
 </form>
