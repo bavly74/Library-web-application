@@ -48,9 +48,11 @@ while($rowbook=$resultbookStmt->fetch_assoc()){
   <div class="card-body">
     <h5 class="card-title"><?php echo $rowbook['title'];?></h5>
     <a href="bookDetails.php?bookID=<?php echo $rowbook['id'];?>" class="btn btn-primary">book details</a>
-    <a href="editBook.php?bookID=<?php echo $rowbook['id'];?>" style="margin-top:17px;" class="btn btn-primary">edit book details<?php echo" Book: ".$rowbook['id'];?></a>
+    <a href="bookEdit.php?bookID=<?php echo $rowbook['id'];?>" style="margin-top:17px;" class="btn btn-primary">edit book details<?php echo" number: ".$rowbook['id'];?></a>
 
   </div>
+  <a href="deleteBook.php?bookID=<?php echo $rowbook['id'];?>" style="margin-bottom:0px;background-color:red;width:100%" class="btn btn-primary">delete</a>
+
 </div>
    
   <?php }} else { ?>

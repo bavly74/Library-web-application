@@ -23,15 +23,15 @@ if(isset($_GET['bookID'])){
     <title>Document</title>
 </head>
 <body>
-<h1 style="text-align:center;">Book Details :</h1>
+<h1 style="text-align:center;margin-top: 29px;">Book Details :</h1>
 
 <div class="container mainBox">
     <div class="bookImg" ><img src="img/<?php echo $row['imgpath']; ?>" ></div>
     <div class="bookDetails" >
-        <h3>Title : <?php echo $row['title'];?></h3>
-        <h3>author name : <?php echo $row['author'];?></h3>
-        <h3>submission date : <?php echo $row['submission date'];?></h3>
-        <h3>edition: <?php echo $row['edition'];?></h3>
+        <h3>Title :<span style="color:black;"> <?php echo $row['title'];?></span> </h3>
+        <h3>author name : <span style="color:black;"><?php echo $row['author'];?></span></h3>
+        <h3>submission date :<span style="color:black;"> <?php echo $row['submission date'];?></span></h3>
+        <h3>edition: <span style="color:black;"><?php echo $row['edition'];?></span></h3>
 
 
     </div>

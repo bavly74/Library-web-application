@@ -4,7 +4,11 @@ require_once"connect.php";
 require_once"header.php";
 $userID=$_SESSION['userID'];
 $validation="";
-if($_POST){
+if(!empty($_POST['search']))
+{
+   echo"nothing to search";
+}
+else if($_POST){
 
   $username=$_REQUEST['username'];
   $email=$_REQUEST['email'];
@@ -21,6 +25,9 @@ $res=$connect->query($updateStmt);
     header("Location:http://localhost/Library/editProfile.php");
   }
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
