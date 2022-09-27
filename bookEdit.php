@@ -2,20 +2,29 @@
 <?php 
 require_once"connect.php";
 require_once"header.php";
-
+$bookValidation="";
+if(!isset($_SESSION['userID'])){
+  header("Location:http://localhost/Library/sign-in.php");
+}
 $bookID=$_GET['bookID'] ;
-
-   if($_POST){
+if(!empty($_POST['search']))
+{
+   echo"nothing to search";
+   header("Location:http://localhost/Library/home.php");
+}
+ else if($_POST){
     $title=$_POST['title'];
     $author=$_POST['author'];
     $number=$_POST['number'];
     $edition=$_POST['edition'];
     $subDate=$_POST['subDate'];
     $imgpath=$_POST['imgpath'];
-$update="update book set title='$title',author='$author',edition='$edition',number='$number' where id='$bookID' where id='$bookID'";
+    $price=$_POST['price'];
+$update="update book set title='$title',author='$author',edition='$edition',number='$number' , price='$price' 
+ where id='$bookID'";
 $res=$connect->query($update); 
 if($res){
-header("Location:http://localhost/Library/home.php");
+  $bookValidation="the book updated";
 }
 }
 ?>
@@ -79,11 +88,17 @@ $arr=$selectRow->fetch_assoc();
       <input type="text" class="form-control input" id="inputPassword4"  value="<?php echo $arr['imgpath'] ?>" name="imgpath"> 
     </div>
 
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">price</label>
+      <input type="text" class="form-control input" id="inputPassword4"  value="<?php echo $arr['price'] ?>" name="price"> 
+    </div>
+
   </div>
 
 
   <button name="submit" type="submit" class="btn btn-primary ">Save</button>
 
+  <?php if($bookValidation)  ?> <p style="color:green;margin-left:20px;"><?php echo $bookValidation ;?></p>
 
 </form>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

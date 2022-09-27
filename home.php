@@ -1,7 +1,26 @@
 <?php require_once "header.php" ;
 require_once "connect.php";
+$id=$_SESSION['userID'];
 
 
+if(isset($_GET['bookID'])){
+  $bookID=$_GET['bookID'];
+  $selectCart ="select * from cart where bookID = $bookID and userID=$id";
+  $resCart=$connect->query($selectCart);
+  $insrtStmt="";
+  $update="";
+    if($resCart-> num_rows ==0){
+$insrtStmt="insert into cart (bookID,userID,quantity) values ('$bookID','$id',1)";
+$update="update book set number=number-1 where id='$bookID'";
+  }else {
+    $insrtStmt="update cart set quantity=quantity+1 where bookID = $bookID and userID=$id";
+    $update="update book set number=number-1 where id='$bookID'";
+
+  }
+  $updateres=$connect->query($update);
+
+  $insertRes=$connect->query($insrtStmt);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +40,6 @@ require_once "connect.php";
 <div class="row items">
   
 <?php 
-$id=$_SESSION['userID'];
 if(isset($_SESSION['userID'])){
 $selectbookStmt="SELECT * FROM `book`";
 $selectusers="SELECT * FROM `user` where id =$id";
@@ -48,6 +66,8 @@ while($rowbook=$resultbookStmt->fetch_assoc()){
   <div class="card-body">
     <h5 class="card-title"><?php echo $rowbook['title'];?></h5>
     <a href="bookDetails.php?bookID=<?php echo $rowbook['id'];?>" class="btn btn-primary">book details</a>
+    <p style="display: inline-block;margin-left: 20px;font-weight:bold;"><?php echo $rowbook['price']." $";?></p>
+
     <a href="bookEdit.php?bookID=<?php echo $rowbook['id'];?>" style="margin-top:17px;" class="btn btn-primary">edit book details<?php echo" number: ".$rowbook['id'];?></a>
 
   </div>
@@ -55,7 +75,7 @@ while($rowbook=$resultbookStmt->fetch_assoc()){
 
 </div>
    
-  <?php }} else { ?>
+  <?php }} else if ($rowuser['admin']==0){ ?>
 
       <?php
       while($rowbook=$resultbookStmt->fetch_assoc()){ 
@@ -63,10 +83,15 @@ while($rowbook=$resultbookStmt->fetch_assoc()){
 ?>
 
 <div class="card" style="width: 18rem;">
-  <img src="img/<?php echo $rowbook['imgpath'];?>" class="card-img-top crdimg" alt="...">
+ <div class="crdimg">
+  <img src="img/<?php echo $rowbook['imgpath'];?>" class="card-img-top " alt="...">
+  <div class="layer"><a href="home.php?bookID=<?php echo $rowbook['id']; ?>">+</a></div>
+</div> 
+ 
   <div class="card-body">
     <h5 class="card-title"><?php echo $rowbook['title'];?></h5>
     <a href="bookDetails.php?bookID=<?php echo $rowbook['id'];?>" class="btn btn-primary">book details</a>
+    <p style="display: inline-block;margin-left: 20px;font-weight:bold;"><?php echo $rowbook['price']." $";?></p>
   </div>
 </div>
 

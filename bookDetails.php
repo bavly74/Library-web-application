@@ -1,7 +1,16 @@
 <?php
 require_once"connect.php";
 require_once"header.php";
-if(isset($_GET['bookID'])){
+$userID=$_SESSION['userID'];
+if(!isset($_SESSION['userID'])){
+    header("Location:http://localhost/Library/sign-in.php");
+  }
+if(!empty($_POST['search']))
+{
+   echo"nothing to search";
+   header("Location:http://localhost/Library/home.php");
+}
+else if(isset($_GET['bookID'])){
     $bookID=$_GET['bookID'];
    $select="SELECT * FROM `book` WHERE id='$bookID'";
    $result=$connect->query($select);

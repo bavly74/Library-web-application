@@ -90,6 +90,8 @@ if($row['admin']==1){
                 <div class="sub">
                     <ul>
                         <li><a href="editProfile.php?userID=<?php $row['id']; ?>"> update profile</a></li>
+                        <li><a href="cart.php">cart</a></li>
+
                             
                         </li>
                         <hr>

@@ -3,10 +3,14 @@
 require_once"connect.php";
 require_once"header.php";
 $userID=$_SESSION['userID'];
+if(!isset($_SESSION['userID'])){
+  header("Location:http://localhost/Library/sign-in.php");
+}
 $validation="";
 if(!empty($_POST['search']))
 {
    echo"nothing to search";
+   header("Location:http://localhost/Library/home.php");
 }
 else if($_POST){
 

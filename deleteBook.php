@@ -10,4 +10,5 @@ $res=$connect->query($delete);
 if($res){
     header("Location:http://localhost/Library/home.php");
 }
+
 ?>

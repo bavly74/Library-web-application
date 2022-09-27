@@ -1,6 +1,10 @@
 <?php
 require_once"connect.php";
 require_once"header.php";
+$userID=$_SESSION['userID'];
+if(!isset($_SESSION['userID'])){
+  header("Location:http://localhost/Library/sign-in.php");
+}
 $validation="";
 if($_POST){
     $title=$_POST['title'];
@@ -12,9 +16,11 @@ if($_POST){
     $submissionDate=$_POST['submessionDate'];
 
     $imgPath=$_POST['imgPath'];
+    $price=$_POST['price'];
 
 
-    $insertStmt="INSERT INTO `book`(`title`, `author`, `edition`, `number`, `submission date`, `imgpath`) VALUES ('$title','$author','$edition','$number','$submissionDate','$imgPath')";
+
+    $insertStmt="INSERT INTO `book`(`title`, `author`, `edition`, `number`, `submission date`, `imgpath`,`price`) VALUES ('$title','$author','$edition','$number','$submissionDate','$imgPath','$price')";
 $insertResult=$connect->query($insertStmt);
 
 if($insertResult){
@@ -77,6 +83,10 @@ $validation="book added";
       <input type="text " class="form-control input" id="inputPassword4" name="imgPath"> 
     </div>
 
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">price</label>
+      <input type="text " class="form-control input" id="inputPassword4" name="price"> 
+    </div>
 
   </div>
  
